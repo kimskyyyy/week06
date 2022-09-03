@@ -8,7 +8,6 @@ import lombok.Setter;
 public class SignupRequestDto {
     private String username;
     private String password;
-//   2-7 14:46 참고
     private boolean admin = false;
     private String adminToken = "";
 }

@@ -25,8 +25,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+
     @Column(nullable = false)
-//    DB로에 적용될 때는 Enum의 타입을 문자형으로 변경한다.
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 

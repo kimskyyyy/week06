@@ -1,7 +1,7 @@
 package com.sparta.week06.repository;
 
+import com.sparta.week06.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 

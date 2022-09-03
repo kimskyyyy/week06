@@ -1,0 +1,14 @@
+package com.sparta.week06.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class SignupRequestDto {
+    private String username;
+    private String password;
+//   2-7 14:46 참고
+    private boolean admin = false;
+    private String adminToken = "";
+}

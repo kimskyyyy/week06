@@ -1,7 +1,7 @@
 package com.sparta.week06.controller;
 
 import com.sparta.week06.domain.Comment;
-import com.sparta.week06.dto.CommentRequestDto;
+import com.sparta.week06.controller.request.CommentRequestDto;
 import com.sparta.week06.repository.CommentRepository;
 import com.sparta.week06.service.CommentService;
 import lombok.RequiredArgsConstructor;

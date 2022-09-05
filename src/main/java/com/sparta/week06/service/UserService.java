@@ -2,7 +2,7 @@ package com.sparta.week06.service;
 
 import com.sparta.week06.domain.User;
 import com.sparta.week06.domain.UserRoleEnum;
-import com.sparta.week06.dto.SignupRequestDto;
+import com.sparta.week06.controller.request.SignupRequestDto;
 import com.sparta.week06.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

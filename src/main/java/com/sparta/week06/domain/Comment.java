@@ -1,6 +1,6 @@
 package com.sparta.week06.domain;
 
-import com.sparta.week06.dto.CommentRequestDto;
+import com.sparta.week06.controller.request.CommentRequestDto;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

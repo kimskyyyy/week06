@@ -1,4 +1,4 @@
-package com.sparta.week06.dto;
+package com.sparta.week06.controller.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

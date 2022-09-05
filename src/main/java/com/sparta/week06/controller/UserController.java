@@ -1,6 +1,6 @@
 package com.sparta.week06.controller;
 
-import com.sparta.week06.dto.SignupRequestDto;
+import com.sparta.week06.controller.request.SignupRequestDto;
 import com.sparta.week06.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,6 @@
 package com.sparta.week06.service;
 
 import com.sparta.week06.domain.Comment;
-import com.sparta.week06.dto.CommentRequestDto;
 import com.sparta.week06.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 

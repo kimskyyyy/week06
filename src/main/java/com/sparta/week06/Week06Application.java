@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
-@EnableJpaAuditing
 @SpringBootApplication
 @EnableJpaAuditing // Spring Audit 기능 사용(모든 엔티티에 들어가는 공통 컬럼을 공통 엔티티로 사용)
 public class Week06Application {

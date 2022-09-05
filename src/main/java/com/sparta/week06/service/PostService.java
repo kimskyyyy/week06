@@ -4,6 +4,7 @@ import com.sparta.week06.controller.request.PostRequestDto;
 import com.sparta.week06.controller.response.PostResponseDto;
 import com.sparta.week06.controller.response.ResponseDto;
 import com.sparta.week06.domain.Post;
+import com.sparta.week06.repository.CommentRepository;
 import com.sparta.week06.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor // 초기화 되지 않은 final 필드, @NOTNull 필드에 생성자 만듦
 public class PostService {
     private final PostRepository postRepository; // 서비스에게 꼭 필요한 것을 final로 명시
-//    private CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 //    private final TokenProvider tokenProvider;
 //    private final LikeRepository likeRepository;
 
@@ -47,7 +48,7 @@ public class PostService {
 //                .user(user)
                 .build();
         postRepository.save(post);
-        return ResponseDto.ok(
+        return ResponseDto.success(
                 PostResponseDto.builder()
                         .id(post.getId())
                         .title(post.getTitle())
@@ -82,7 +83,7 @@ public class PostService {
 //            );
 //        }
 
-        return ResponseDto.ok(
+        return ResponseDto.success(
                 PostResponseDto.builder()
                         .id(post.getId())
                         .title(post.getTitle())
@@ -120,7 +121,7 @@ public class PostService {
 
         }
 
-        return ResponseDto.ok(postResponseDtos);
+        return ResponseDto.success(postResponseDtos);
     }
 
     // 게시글 수정
@@ -151,7 +152,7 @@ public class PostService {
 //        }
 
         post.update(requestDto);
-        return ResponseDto.ok(post);
+        return ResponseDto.success(post);
     }
 
     // 게시글 삭제
@@ -182,7 +183,7 @@ public class PostService {
 //        }
 //
         postRepository.delete(post);
-        return ResponseDto.ok("delete success");
+        return ResponseDto.success("delete success");
     }
 
     @Transactional(readOnly = true)
@@ -243,6 +244,7 @@ public class PostService {
 //        return ResponseDto.ok("like success");
 
 //    }
+
 
 
 

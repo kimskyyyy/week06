@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service // PostService 클래스가 서비스임을 스프링에게 알림
+@Service // PostService 클래스가 서비스임을 스프링에게 알림, 서비스는 사용자의 요구사항이 처리되는 부분
 @RequiredArgsConstructor // 초기화 되지 않은 final 필드, @NOTNull 필드에 생성자 만듦
 public class PostService {
     private final PostRepository postRepository; // 서비스에게 꼭 필요한 것을 final로 명시

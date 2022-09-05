@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequiredArgsConstructor // final이 있는 필드 생성자를 자동 생성
-@RestController
+@RequiredArgsConstructor // final로 선언된 멤버 변수를 자동으로 생성(생성자 자동 생성)
+@RestController // JSON으로 데이터 주고 받는 Controller임을 선언
 public class PostController {
     private final PostService postService;
 

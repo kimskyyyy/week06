@@ -36,7 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-<<<<<<< HEAD
 ### aws 키 관련 ###
 /src/main/resources/application-aws.properties/src/main/resources/application-aws.properties
->>>>>>> 2ffe123ce9215841fbd4005e37ec0f9029fe840e

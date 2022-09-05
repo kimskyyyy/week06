@@ -1,38 +1,55 @@
 package com.sparta.week06.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.Hibernate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class User extends Timestamped {
 
-@Setter
-@Getter // get 함수를 일괄적으로 만들어줍니다.
-@NoArgsConstructor // 기본 생성자를 만들어줍니다.
-@Entity // DB 테이블 역할을 합니다.
-public class User {
-
-    // ID가 자동으로 생성 및 증가합니다.
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // nullable: null 허용 여부
-// unique: 중복 허용 여부 (false 일때 중복 허용)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+            return false;
+        }
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
+    }
 
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private UserRoleEnum role;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
-    public User(String username, String password, UserRoleEnum role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    public boolean validatePassword(PasswordEncoder passwordEncoder, String password) {
+        return passwordEncoder.matches(password, this.password);
     }
 }

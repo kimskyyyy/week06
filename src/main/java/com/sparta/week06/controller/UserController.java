@@ -1,38 +1,44 @@
 package com.sparta.week06.controller;
 
-import com.sparta.week06.dto.SignupRequestDto;
-import com.sparta.week06.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
-@Controller
+import com.sparta.week06.controller.request.SignupRequestDto;
+import com.sparta.week06.controller.request.UserRequestDto;
+import com.sparta.week06.controller.response.ResponseDto;
+import com.sparta.week06.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequiredArgsConstructor
+@RestController
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @RequestMapping(value = "/api/user/signup", method = RequestMethod.POST)
+    public ResponseDto<?> signup(@RequestBody @Valid UserRequestDto requestDto) {
+        return userService.createUser(requestDto);
     }
 
-    // 회원 로그인 페이지
-    @GetMapping("/user/login")
-    public String login() {
-        return "login";
+    @RequestMapping(value = "/api/user/login", method = RequestMethod.POST)
+    public ResponseDto<?> login(@RequestBody @Valid SignupRequestDto requestDto,
+                                HttpServletResponse response
+    ) {
+        return userService.login(requestDto, response);
     }
 
-    // 회원 가입 페이지
-    @GetMapping("/user/signup")
-    public String signup() {
-        return "signup";
-    }
+//  @RequestMapping(value = "/api/auth/member/reissue", method = RequestMethod.POST)
+//  public ResponseDto<?> reissue(HttpServletRequest request, HttpServletResponse response) {
+//    return memberService.reissue(request, response);
+//  }
 
-    // 회원 가입 요청 처리
-    @PostMapping("/user/signup")
-    public String registerUser(SignupRequestDto requestDto) {
-        userService.registerUser(requestDto);
-        return "redirect:/user/login";
+    @RequestMapping(value = "/api/logout", method = RequestMethod.POST)
+    public ResponseDto<?> logout(HttpServletRequest request) {
+        return userService.logout(request);
     }
 }

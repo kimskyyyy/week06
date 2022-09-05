@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class CommentRequestDto {
-    public final String Author;
-    public final String comment;
-
+    public Long postId;
+    public String comment;
 }

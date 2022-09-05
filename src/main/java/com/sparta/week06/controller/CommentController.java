@@ -1,51 +1,47 @@
 package com.sparta.week06.controller;
 
-import com.sparta.week06.domain.Comment;
+
+import javax.servlet.http.HttpServletRequest;
 import com.sparta.week06.controller.request.CommentRequestDto;
-import com.sparta.week06.repository.CommentRepository;
+import com.sparta.week06.controller.response.ResponseDto;
 import com.sparta.week06.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+@Validated
 @RequiredArgsConstructor
 @RestController
 public class CommentController {
 
     private final CommentService commentService;
-    private final CommentRepository commentRepository;
 
-    @GetMapping("/api/comment")
-    public List<Comment> getComment() {
-        return commentRepository.findAll();
+    @RequestMapping(value = "/api/comment", method = RequestMethod.POST)
+    public ResponseDto<?> createComment(@RequestBody CommentRequestDto requestDto,
+                                        HttpServletRequest request) {
+        return commentService.createComment(requestDto, request);
     }
 
+    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
+    public ResponseDto<?> getAllComments(@PathVariable Long id) {
 
-    // PostMapping을 통해서, 같은 주소라도 방식이 다름을 구분합니다.
-    @PostMapping("/api/comment")
-    public Comment createComment(@RequestBody CommentRequestDto requestDto) {
-        // requestDto 는, 생성 요청을 의미합니다.
-        // 강의 정보를 만들기 위해서는 강의 제목과 튜터 이름이 필요하잖아요?
-        // 그 정보를 가져오는 녀석입니다.
-
-        // 저장하는 것은 Dto가 아니라 Course이니, Dto의 정보를 course에 담아야 합니다.
-        // 잠시 뒤 새로운 생성자를 만듭니다.
-        Comment comment = new Comment(requestDto);
-
-        // JPA를 이용하여 DB에 저장하고, 그 결과를 반환합니다.
-        return commentRepository.save(comment);
+        return commentService.getAllCommentsByPost(id);
     }
 
-    @PutMapping("/api/comment/{id}")
-    public Long updateComment(@PathVariable Long id, @RequestBody Comment requestDto) {
-        return commentService.update(id, requestDto);
+    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.PUT)
+    public ResponseDto<?> updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto,
+                                        HttpServletRequest request) {
+        return commentService.updateComment(id, requestDto, request);
     }
 
-    @DeleteMapping("/api/comment/{id}")
-    public Long deleteComment(@PathVariable Long id){
-        commentRepository.deleteById(id);
-        return id;
+    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.DELETE)
+    public ResponseDto<?> deleteComment(@PathVariable Long id,
+                                        HttpServletRequest request) {
+        return commentService.deleteComment(id, request);
     }
 }
 

@@ -1,9 +1,7 @@
 package com.sparta.week06.service;
 
-//import com.sparta.week06.controller.response.ImageResponseDto;
 import com.sparta.week06.controller.response.ImageResponseDto;
 import com.sparta.week06.controller.response.ResponseDto;
-//import com.sparta.week06.domain.Image;
 import com.sparta.week06.domain.Image;
 import com.sparta.week06.repository.ImageRepository;
 import lombok.RequiredArgsConstructor;

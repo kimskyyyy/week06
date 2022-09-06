@@ -28,8 +28,11 @@ import java.util.Optional;
 @Component
 public class TokenProvider {
 
+//  bearer token: token 포맷의 일종. 클라이언트 사이드에서 REST API호출 시 bearer토큰을 포함하여 서버로 request를 보낸다.
+
   private static final String AUTHORITIES_KEY = "auth";
   private static final String BEARER_PREFIX = "Bearer ";
+//  AccessToken의 유효기간을 30분으로, RefreshToken의 유효기간을 7일로 설정.
   private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            //30분
   private static final long REFRESH_TOKEN_EXPRIRE_TIME = 1000 * 60 * 60 * 24 * 7;     //7일
 

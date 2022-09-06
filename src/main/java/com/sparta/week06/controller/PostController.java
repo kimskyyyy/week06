@@ -26,7 +26,7 @@ public class PostController {
     }
 
     // 전체 게시글 조회(메인)
-    @RequestMapping(value = "/api", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/post", method = RequestMethod.GET)
     public ResponseDto<?> getAllPosts() {
         return postService.getAllPost();
     }

@@ -55,6 +55,7 @@ public class SecurityConfiguration {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         .and()
+//            권한없이 (=토큰없이) 이용가능한 api설정
         .authorizeRequests()
         .antMatchers("/api/user/**").permitAll()
         .antMatchers("/api/post").permitAll()

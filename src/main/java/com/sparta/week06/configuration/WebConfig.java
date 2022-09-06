@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override // addCorsMappings 메소드 오버라이드
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:3001")
+                .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT","DELETE")
                 .maxAge(3600);
         // 경로 패턴 설정, 리소스 공유 허용 할 Origin(출처), 허용할 메소드, 프리플라이트 리퀘스트 캐싱 시간(초)설정

@@ -43,6 +43,7 @@ public class SecurityConfiguration {
   @Order(SecurityProperties.BASIC_AUTH_ORDER)
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors();
+    http.headers().frameOptions().disable();
 
     http.csrf().disable()
 
@@ -59,6 +60,7 @@ public class SecurityConfiguration {
         .antMatchers("/api/user/**").permitAll()
         .antMatchers("/api/post").permitAll()
         .antMatchers("/api/comment").permitAll()
+        .antMatchers("/h2-console/**").permitAll() // h2-console 사용을 위해 추가
         .anyRequest().authenticated()
 
         .and()

@@ -14,7 +14,7 @@ public class PostController {
     private final PostService postService;
 
     // 게시글 작성
-    @RequestMapping(value = "/api/write", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/post", method = RequestMethod.POST)
     public ResponseDto<?> createPost(@RequestBody PostRequestDto requestDto,
                                      HttpServletRequest request) {
         return postService.createPost(requestDto, request);

@@ -21,7 +21,7 @@ public class ImageService {
 
     @Transactional
     public ResponseDto<?> upload(HttpServletRequest request, String imageUrl) {
-        if (null == request.getHeader("Refresh-Token")) {
+        if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("USER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }

@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentResponseDto {
-    private Long id;
+    private Long parentId;
     private String author;
     private String comment;
-    private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

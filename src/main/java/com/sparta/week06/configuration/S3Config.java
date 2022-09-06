@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration // 스프링이 기동 될 때 먼저 읽는 설정 파일
 public class S3Config {
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -20,7 +20,7 @@ public class S3Config {
     @Value("${cloud.aws.region.static}")
     private String region;
 
-    @Bean
+    @Bean // 스프링이 관리하는 객체인 Bean 등록(스프링 IoC 컨테이너에 저장됨)
     public AmazonS3 amazonS3Client() {
         AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
 

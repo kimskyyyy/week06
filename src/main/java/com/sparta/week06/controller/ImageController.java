@@ -20,7 +20,7 @@ public class ImageController {
     private final S3UploaderService s3UploaderService;
     private final ImageService imageService;
 
-    @RequestMapping(value = "/api/image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/api/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, method = RequestMethod.POST)
     public ResponseDto<?> upload(HttpServletRequest request, @RequestParam(value="image", required = false) MultipartFile multipartFile) throws IOException {
         String imageUrl = s3UploaderService.upload(multipartFile, "static");
 

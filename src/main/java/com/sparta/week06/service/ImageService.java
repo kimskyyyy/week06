@@ -44,7 +44,7 @@ public class ImageService {
                 .imageUrl(imageUrl)
                 .build();
         imageRepository.save(image);
-        return ResponseDto.ok(
+        return ResponseDto.success(
                 ImageResponseDto.builder()
                         .imageUrl(image.getImageUrl())
                         .build()

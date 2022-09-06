@@ -1,4 +1,4 @@
-package com.sparta.week06.dto;
+package com.sparta.week06.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,4 @@ import lombok.Setter;
 public class SignupRequestDto {
     private String username;
     private String password;
-    private boolean admin = false;
-    private String adminToken = "";
 }

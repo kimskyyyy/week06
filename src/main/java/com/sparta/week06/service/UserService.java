@@ -27,6 +27,7 @@ public class UserService {
   private final TokenProvider tokenProvider;
 
   @Transactional
+//  회원가입. 유저가 존재하는지, 비밀번호와 비밀번호확인이 일치하는지의 여부를 if문을 통해 확인하고 이를 통과하면 user에 대한 정보를 생성.
   public ResponseDto<?> createUser(UserRequestDto requestDto) {
     if (null != isPresentUser(requestDto.getUsername())) {
       return ResponseDto.fail("DUPLICATED_NICKNAME",
@@ -54,6 +55,9 @@ public class UserService {
   }
 
   @Transactional
+//  로그인. 가입할때 사용된 정보를 SignupRequestDto에 보내고 HttpServletResponse에 속한 권한이 확인.
+//  사용자의 아이디가 존재하지 않거나 비밀번호확인이 일치하지 않았을 때 오류 메시지를 출력.
+//  정상일 경우 tokenProvider를 통하여 유저에게 토큰을 생성하고 이를 헤더에 보낸다.
   public ResponseDto<?> login(SignupRequestDto requestDto, HttpServletResponse response) {
     User user = isPresentUser(requestDto.getUsername());
     if (null == user) {
@@ -62,12 +66,9 @@ public class UserService {
     }
 
     if (!user.validatePassword(passwordEncoder, requestDto.getPassword())) {
-      return ResponseDto.fail("INVALID_MEMBER", "사용자를 찾을 수 없습니다.");
+      return ResponseDto.fail("INVALID_MEMBER", "비밀번호가 틀렸습니다..");
     }
 
-//    UsernamePasswordAuthenticationToken authenticationToken =
-//        new UsernamePasswordAuthenticationToken(requestDto.getNickname(), requestDto.getPassword());
-//    Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
     TokenDto tokenDto = tokenProvider.generateTokenDto(user);
     tokenToHeaders(tokenDto, response);
@@ -82,30 +83,8 @@ public class UserService {
     );
   }
 
-//  @Transactional
-//  public ResponseDto<?> reissue(HttpServletRequest request, HttpServletResponse response) {
-//    if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
-//      return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
-//    }
-//    Member member = tokenProvider.getMemberFromAuthentication();
-//    if (null == member) {
-//      return ResponseDto.fail("MEMBER_NOT_FOUND",
-//          "사용자를 찾을 수 없습니다.");
-//    }
-//
-//    Authentication authentication = tokenProvider.getAuthentication(request.getHeader("Access-Token"));
-//    RefreshToken refreshToken = tokenProvider.isPresentRefreshToken(member);
-//
-//    if (!refreshToken.getValue().equals(request.getHeader("Refresh-Token"))) {
-//      return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
-//    }
-//
-//    TokenDto tokenDto = tokenProvider.generateTokenDto(member);
-//    refreshToken.updateValue(tokenDto.getRefreshToken());
-//    tokenToHeaders(tokenDto, response);
-//    return ResponseDto.success("success");
-//  }
-
+//  로그아웃. HttpServletRequest에 있는 권한을 보내 토큰을 확인하여 일치하지 않거나 유저 정보가 없을 경우 오류 메시지를 출력
+//  정상일 경우 tokenProvider에 유저에게 있는 리프레시토큰 삭제를 진행
   public ResponseDto<?> logout(HttpServletRequest request) {
     if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
       return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
@@ -125,6 +104,10 @@ public class UserService {
     return optionalUser.orElse(null);
   }
 
+//  TokenDto와 HttpServletResponse 응답을 헤더에 보낼 경우
+//  권한과 tokenDto에 있는 AccessToken을 추가
+//  Refresh-token을 추가
+//  AccessToken의 유효기간을 추가한다.
   public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
     response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
     response.addHeader("Refresh-Token", tokenDto.getRefreshToken());

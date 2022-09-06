@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter // get 함수 일괄 생성
+@Getter // Get메소드 일괄 생성
 @Builder
 @NoArgsConstructor // 파라미터가 없는 기본 생성자 생성
 @AllArgsConstructor // 모든 필드 값을 파라미터로 받는 생성자 만듦
@@ -28,9 +28,9 @@ public class Post extends Timestamped {
     @Column(length = 1000) // 컬럼 길이 1000(cf. 기본 컬림 길이 255)
     private String imageUrl;
 
+    @JoinColumn(name = "user_id", nullable = false) // post테이블을 user테이블과 조인
     @ManyToOne(fetch = FetchType.LAZY) // 여러개의 post를 1명의 User가 작성, 지연 로딩 사용
-    @JoinColumn(name = "author", nullable = false) // post테이블을 user테이블의 username을 이용하여 조인
-    private User username;
+    private User user;
 
 //    @Column
 //    private int like;
@@ -38,12 +38,12 @@ public class Post extends Timestamped {
     public void update(PostRequestDto postRequestDto) { // updqte 일반 생성자
         this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
-        this.imageUrl =  postRequestDto.getImageUrl();
+        this.imageUrl = postRequestDto.getImageUrl();
     }
 
-//    public boolean validateUser(User user) {
-//        return !this.user.equals(user);
-//    }
+    public boolean validateUser(User user) {
+        return !this.user.equals(user);
+    }
 
 
 //    public void updatelike(int num) {

@@ -19,6 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsUtils;
 
 @Configuration
 @EnableWebSecurity
@@ -62,6 +63,7 @@ public class SecurityConfiguration {
         .antMatchers("/api/post").permitAll()
         .antMatchers("/api/comment").permitAll()
         .antMatchers("/h2-console/**").permitAll() // h2-console 사용을 위해 추가
+        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll() // preflight 허용을 위해 추가
         .anyRequest().authenticated()
 
         .and()

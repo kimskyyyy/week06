@@ -26,7 +26,7 @@ public class PostService {
     // 게시글 작성
     @Transactional // 메소드가 호출 될 경우 트랜잭션을 시작하고 정상여부에 따라 Commit 또는 Rollback
     public ResponseDto<?> createPost(PostRequestDto requestDto, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
+        if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("USER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }
@@ -109,7 +109,7 @@ public class PostService {
     // 게시글 수정
     @Transactional
     public ResponseDto<Post> updatePost(Long id, PostRequestDto requestDto, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
+        if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("USER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }
@@ -140,7 +140,7 @@ public class PostService {
     // 게시글 삭제
     @Transactional
     public ResponseDto<?> deletePost(Long id, HttpServletRequest request) {
-        if (null == request.getHeader("Refresh-Token")) {
+        if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("USER_NOT_FOUND",
                     "로그인이 필요합니다.");
         }
@@ -176,7 +176,7 @@ public class PostService {
 
     @Transactional
     public com.sparta.week06.domain.User validateUser(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("refreshtoken"))) {
             return null;
         }
         return tokenProvider.getUserFromAuthentication();

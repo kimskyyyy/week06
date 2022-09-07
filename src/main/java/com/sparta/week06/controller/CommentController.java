@@ -27,10 +27,14 @@ public class CommentController {
         return commentService.createComment(requestDto, request);
     }
 // GET방식 comment API id를 조회하여 commentService에서 정의한 getAllCommentByPost 메소드에 따라 Post의 반복문을 돌려 해당 Post에 속해있는 댓글id들을 반환
-    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
-    public ResponseDto<?> getAllComments(@PathVariable Long id) {
-
-        return commentService.getAllCommentsByPost(id);
+//    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
+//    public ResponseDto<?> getAllComments(@PathVariable Long id) {
+//
+//        return commentService.getAllCommentsByPost(id);
+//    }
+    @RequestMapping(value = "/api/comment", method = RequestMethod.GET)
+    public ResponseDto<?> getAllComments() {
+        return commentService.getAllComment();
     }
 
 //    PUT방식 comment API id와 commentRequestDto에 포함된 정보, 권한 인증을 받아 작성된 댓글을 수정하고 CommentService에서 정의한 updateComment메소드에 따라 수정값을 반환

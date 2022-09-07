@@ -13,9 +13,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET", "POST", "PUT","DELETE")
-                .exposedHeaders("jwt-token","Authorization","refreshtoken","Refresh-Token")
+                .allowedMethods("GET", "POST", "PUT","DELETE","HEAD")
+                .exposedHeaders("*")
                 .allowedHeaders("*")
+                .allowCredentials(true)
+
                 .maxAge(3600);
         // 경로 패턴 설정, 리소스 공유 허용 할 Origin(출처), 허용할 메소드, 프리플라이트 리퀘스트 캐싱 시간(초)설정
     }

@@ -27,7 +27,7 @@ public class CommentController {
         return commentService.createComment(requestDto, request);
     }
 // GET방식 comment API id를 조회하여 commentService에서 정의한 getAllCommentByPost 메소드에 따라 Post의 반복문을 돌려 해당 Post에 속해있는 댓글id들을 반환
-    @RequestMapping(value = "/api/comment", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
     public ResponseDto<?> getAllComments(@PathVariable Long id) {
 
         return commentService.getAllCommentsByPost(id);

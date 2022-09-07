@@ -1,6 +1,6 @@
 package com.sparta.week06.domain;
 
-import com.sparta.week06.controller.request.CommentRequestDto;
+import com.sparta.week06.controller.request.CommentUpdateRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,7 +30,7 @@ public class Comment extends Timestamped {
     @Column(nullable = false)
     private String comment;
 
-    public void update(CommentRequestDto commentRequestDto) {
+    public void update(CommentUpdateRequestDto commentRequestDto) {
         this.comment = commentRequestDto.getComment();
     }
 

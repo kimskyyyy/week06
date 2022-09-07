@@ -3,6 +3,7 @@ package com.sparta.week06.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import com.sparta.week06.controller.request.CommentRequestDto;
+import com.sparta.week06.controller.request.CommentUpdateRequestDto;
 import com.sparta.week06.controller.response.ResponseDto;
 import com.sparta.week06.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class CommentController {
 
 //    PUT방식 comment API id와 commentRequestDto에 포함된 정보, 권한 인증을 받아 작성된 댓글을 수정하고 CommentService에서 정의한 updateComment메소드에 따라 수정값을 반환
     @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.PUT)
-    public ResponseDto<?> updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto,
+    public ResponseDto<?> updateComment(@PathVariable Long id, @RequestBody CommentUpdateRequestDto requestDto,
                                         HttpServletRequest request) {
         return commentService.updateComment(id, requestDto, request);
     }

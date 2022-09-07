@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sparta.week06.controller.request.CommentRequestDto;
+import com.sparta.week06.controller.request.CommentUpdateRequestDto;
 import com.sparta.week06.controller.response.CommentResponseDto;
 import com.sparta.week06.controller.response.PostResponseDto;
 import com.sparta.week06.controller.response.ResponseDto;
@@ -118,7 +119,7 @@ public class CommentService {
     @Transactional
 //    댓글 수정(댓글 업데이트). 댓글 id와 CommentRequestDto, HttpServletRequest를 통해
 //    refresh-token 확인, 권한 확인, User와  Post, Comment를 확인하여 일치하지 않을 경우 해당 메시지 출력. 성공시 comment.update(requestDto)를 통해 댓글 사항 수정.
-    public ResponseDto<?> updateComment(Long id, CommentRequestDto requestDto, HttpServletRequest request) {
+    public ResponseDto<?> updateComment(Long id, CommentUpdateRequestDto requestDto, HttpServletRequest request) {
         if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
                     "로그인이 필요합니다.");
@@ -134,10 +135,11 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
-        Post post = postService.isPresentPost(requestDto.getParentId());
-        if (null == post) {
-            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
-        }
+//       현재 따로 사용하지 않아서 제거.
+//        Post post = postService.isPresentPost(requestDto.getId());
+//        if (null == post) {
+//            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
+//        }
 
         Comment comment = isPresentComment(id);
         if (null == comment) {

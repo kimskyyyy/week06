@@ -1,4 +1,5 @@
 package com.sparta.week06.service;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.sparta.week06.controller.request.CommentRequestDto;
 import com.sparta.week06.controller.response.CommentResponseDto;
+import com.sparta.week06.controller.response.PostResponseDto;
 import com.sparta.week06.controller.response.ResponseDto;
 import com.sparta.week06.domain.Comment;
 import com.sparta.week06.domain.Post;
@@ -59,6 +61,7 @@ public class CommentService {
         return ResponseDto.success(
                 CommentResponseDto.builder()
                         .id(comment.getId())
+                        .parentId(comment.getPost().getId())
                         .author(comment.getUser().getUsername())
                         .comment(comment.getComment())
                         .modifiedAt(comment.getModifiedAt())
@@ -66,32 +69,52 @@ public class CommentService {
         );
     }
 
+//    @Transactional(readOnly = true)
+////    댓글 조회. Post에 있는 parentId를 받아서 post가 존재하는지 확인.
+////    이후 존재한다면 반복분을 통하여 commentResponseDtoList에 추가.
+////    이후 성공한다면 ResponseDto.success(commentResponseDtoList)로 반환.
+//    public ResponseDto<?> getAllCommentsByPost(Long parentId) {
+//        Post post = postService.isPresentPost(parentId);
+//        if (null == post) {
+//            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
+//        }
+//
+//        List<Comment> commentList = commentRepository.findAllByPost(post);
+//        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
+//
+//        for (Comment comment : commentList) {
+//            commentResponseDtoList.add(
+//                    CommentResponseDto.builder()
+//                            .id(comment.getId())
+//                            .author(comment.getUser().getUsername())
+//                            .comment(comment.getComment())
+//                            .modifiedAt(comment.getModifiedAt())
+//                            .build()
+//            );
+//        }
+//        return ResponseDto.success(commentResponseDtoList);
+//    }
+
     @Transactional(readOnly = true)
-//    댓글 조회. Post에 있는 parentId를 받아서 post가 존재하는지 확인.
-//    이후 존재한다면 반복분을 통하여 commentResponseDtoList에 추가.
-//    이후 성공한다면 ResponseDto.success(commentResponseDtoList)로 반환.
-    public ResponseDto<?> getAllCommentsByPost(Long parentId) {
-        Post post = postService.isPresentPost(parentId);
-        if (null == post) {
-            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
-        }
+    public ResponseDto<?> getAllComment() {
+        List<Comment> comments = commentRepository.findAllByOrderByModifiedAtDesc();
+        List<CommentResponseDto> commentResponseDtos = new ArrayList<>();
+        for (Comment comment : comments) {
+//            List<Comment> commentList = commentRepository.findAllByPost(post);
 
-        List<Comment> commentList = commentRepository.findAllByPost(post);
-        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
-
-        for (Comment comment : commentList) {
-            commentResponseDtoList.add(
+            commentResponseDtos.add(
                     CommentResponseDto.builder()
                             .id(comment.getId())
+                            .parentId(comment.getPost().getId())
                             .author(comment.getUser().getUsername())
                             .comment(comment.getComment())
                             .modifiedAt(comment.getModifiedAt())
                             .build()
             );
-        }
-        return ResponseDto.success(commentResponseDtoList);
-    }
 
+        }
+        return ResponseDto.success(commentResponseDtos);
+    }
     @Transactional
 //    댓글 수정(댓글 업데이트). 댓글 id와 CommentRequestDto, HttpServletRequest를 통해
 //    refresh-token 확인, 권한 확인, User와  Post, Comment를 확인하여 일치하지 않을 경우 해당 메시지 출력. 성공시 comment.update(requestDto)를 통해 댓글 사항 수정.
@@ -129,6 +152,7 @@ public class CommentService {
         return ResponseDto.success(
                 CommentResponseDto.builder()
                         .id(comment.getId())
+                        .parentId(comment.getPost().getId())
                         .author(comment.getUser().getUsername())
                         .comment(comment.getComment())
                         .modifiedAt(comment.getModifiedAt())
@@ -180,7 +204,7 @@ public class CommentService {
 //    User확인 코드. HttpServletRequest를 받아 tokenProvider에서 token을 확인하였을 때
 //    헤더에서 받은 토큰이 refresh-token이 아닐 경우 null을 반환. 일치할 경우 tokenProvider의 getUserFromAuthentication 메소드를 통해 권한부여
     public User validateUser(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("refreshtoken"))) {
             return null;
         }
         return tokenProvider.getUserFromAuthentication();

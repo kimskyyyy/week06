@@ -108,7 +108,7 @@ public class PostService {
 
     // 게시글 수정
     @Transactional
-    public ResponseDto<Post> updatePost(Long id, PostRequestDto requestDto, HttpServletRequest request) {
+    public ResponseDto<?> updatePost(Long id, PostRequestDto requestDto, HttpServletRequest request) {
         if (null == request.getHeader("refreshtoken")) {
             return ResponseDto.fail("USER_NOT_FOUND",
                     "로그인이 필요합니다.");
@@ -134,7 +134,6 @@ public class PostService {
         }
 
         post.update(requestDto);
-        return ResponseDto.success(post);
         return ResponseDto.success(
                 PostResponseDto.builder()
                         .id(post.getId())
@@ -192,49 +191,6 @@ public class PostService {
         return tokenProvider.getUserFromAuthentication();
     }
 
-    // 게시글 좋아요
-//    public PostLike isPresentLike(Long Id, String nickname) {
-//        Optional<PostLike> optionalPostLike = likeRepository.findByRequestIdAndUser(Id,User);
-//        return optionalPostLike.orElse(null);
-//    }
-
-    // 게시글 좋아요
-//    @Transactional
-//    public ResponseDto<?> createpostlike(Long id, HttpServletRequest request) {
-//        if (null == request.getHeader("Refresh-Token")) {
-//            return ResponseDto.fail("USER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
-//
-//        if (null == request.getHeader("Authorization")) {
-//            return ResponseDto.fail("USER_NOT_FOUND",
-//                    "로그인이 필요합니다.");
-//        }
-//
-//        User user = validateUser(request);
-//        if (null == user) {
-//            return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
-        }
-
-//        Post post = isPresentPost(id);
-//        if (null == post) {
-//            return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
-//        }
-//        PostLike like = isPresentLike(post.getId(), user.getNickname());
-//
-//        if (null == like)
-//            likeRepository.save(PostLike.builder()
-//                    .requestId(post.getId())
-//                    .nickname(user.getNickname()).build());
-//        else
-//            likeRepository.delete(like);
-//
-//        post.updatelike(likeRepository
-//                .findAllByRequestId(post.getId()).size());
-//
-//        return ResponseDto.ok("like success");
-
-//    }
 }
 
 

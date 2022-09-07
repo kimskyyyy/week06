@@ -135,6 +135,16 @@ public class PostService {
 
         post.update(requestDto);
         return ResponseDto.success(post);
+        return ResponseDto.success(
+                PostResponseDto.builder()
+                        .id(post.getId())
+                        .title(post.getTitle())
+                        .content(post.getContent())
+                        .imageUrl(post.getImageUrl())
+                        .author(post.getUser().getUsername())
+                        .modifiedAt(post.getModifiedAt())
+                        .build()
+        );
     }
 
     // 게시글 삭제
@@ -225,6 +235,7 @@ public class PostService {
 //        return ResponseDto.ok("like success");
 
 //    }
+}
 
 
 

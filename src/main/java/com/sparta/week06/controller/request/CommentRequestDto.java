@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class CommentRequestDto {
-    public Long postId;
+    public Long parentId;
     public String comment;
 }

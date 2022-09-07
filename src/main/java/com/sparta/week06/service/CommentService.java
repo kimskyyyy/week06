@@ -26,6 +26,9 @@ public class CommentService {
     private final PostService postService;
 
     @Transactional
+//    댓글 생성. CommentRequestDto와 HttpServletRequest를 받은 후,
+//    if문을 통해 refresh-token확인, 권한 확인, 유저확인, post확인을 진행 한 후
+//    코멘트 build를 통해 해당 내용을 저장.
     public ResponseDto<?> createComment(CommentRequestDto requestDto, HttpServletRequest request) {
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -42,7 +45,7 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
-        Post post = postService.isPresentPost(requestDto.getPostId());
+        Post post = postService.isPresentPost(requestDto.getParentId());
         if (null == post) {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
@@ -55,16 +58,18 @@ public class CommentService {
         commentRepository.save(comment);
         return ResponseDto.success(
                 CommentResponseDto.builder()
-                        .id(comment.getId())
+                        .parentId(comment.getId())
                         .author(comment.getUser().getUsername())
                         .comment(comment.getComment())
-                        .createdAt(comment.getCreatedAt())
                         .modifiedAt(comment.getModifiedAt())
                         .build()
         );
     }
 
     @Transactional(readOnly = true)
+//    댓글 조회. Post에 있는 postId를 받아서 post가 존재하는지 확인.
+//    이후 존재한다면 반복분을 통하여 commentResponseDtoList에 추가.
+//    이후 성공한다면 ResponseDto.success(commentResponseDtoList)로 반환.
     public ResponseDto<?> getAllCommentsByPost(Long postId) {
         Post post = postService.isPresentPost(postId);
         if (null == post) {
@@ -77,10 +82,9 @@ public class CommentService {
         for (Comment comment : commentList) {
             commentResponseDtoList.add(
                     CommentResponseDto.builder()
-                            .id(comment.getId())
+                            .parentId(comment.getId())
                             .author(comment.getUser().getUsername())
                             .comment(comment.getComment())
-                            .createdAt(comment.getCreatedAt())
                             .modifiedAt(comment.getModifiedAt())
                             .build()
             );
@@ -89,6 +93,8 @@ public class CommentService {
     }
 
     @Transactional
+//    댓글 수정(댓글 업데이트). 댓글 id와 CommentRequestDto, HttpServletRequest를 통해
+//    refresh-token 확인, 권한 확인, User와  Post, Comment를 확인하여 일치하지 않을 경우 해당 메시지 출력. 성공시 comment.update(requestDto)를 통해 댓글 사항 수정.
     public ResponseDto<?> updateComment(Long id, CommentRequestDto requestDto, HttpServletRequest request) {
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -105,7 +111,7 @@ public class CommentService {
             return ResponseDto.fail("INVALID_TOKEN", "Token이 유효하지 않습니다.");
         }
 
-        Post post = postService.isPresentPost(requestDto.getPostId());
+        Post post = postService.isPresentPost(requestDto.getParentId());
         if (null == post) {
             return ResponseDto.fail("NOT_FOUND", "존재하지 않는 게시글 id 입니다.");
         }
@@ -122,16 +128,18 @@ public class CommentService {
         comment.update(requestDto);
         return ResponseDto.success(
                 CommentResponseDto.builder()
-                        .id(comment.getId())
+                        .parentId(comment.getId())
                         .author(comment.getUser().getUsername())
                         .comment(comment.getComment())
-                        .createdAt(comment.getCreatedAt())
                         .modifiedAt(comment.getModifiedAt())
                         .build()
         );
     }
 
     @Transactional
+//    댓글 삭제. id와 HttpServletRequest를 통해
+//    refresh-token 확인, 권한 확인, User와 Comment 확인을 진행. 오류시 해당 메시지 출력.
+//    이후 cpmmentRepository.delete(comment)를 통해 댓글 삭제.
     public ResponseDto<?> deleteComment(Long id, HttpServletRequest request) {
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail("MEMBER_NOT_FOUND",
@@ -162,12 +170,15 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
+//    댓글 존재 여부 확인 코드. comment가 commentRepository에 정의되어있는 findById를 통해 id를 확인. 없을경우 null.
     public Comment isPresentComment(Long id) {
         Optional<Comment> optionalComment = commentRepository.findById(id);
         return optionalComment.orElse(null);
     }
 
     @Transactional
+//    User확인 코드. HttpServletRequest를 받아 tokenProvider에서 token을 확인하였을 때
+//    헤더에서 받은 토큰이 refresh-token이 아닐 경우 null을 반환. 일치할 경우 tokenProvider의 getUserFromAuthentication 메소드를 통해 권한부여
     public User validateUser(HttpServletRequest request) {
         if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
             return null;

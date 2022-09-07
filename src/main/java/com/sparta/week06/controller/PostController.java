@@ -45,10 +45,4 @@ public class PostController {
         return postService.deletePost(id, request);
     }
 
-    // 좋아요
-//    @RequestMapping(value = "/api/post/like/{id}", method = RequestMethod.POST)
-//    public ResponseDto<?> createpostlikes(@PathVariable Long id,
-//                                          HttpServletRequest request){
-//        return postService.createpostlikes(id,request);
-//    }
 }

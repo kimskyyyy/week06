@@ -32,8 +32,8 @@ public class Post extends Timestamped {
     @ManyToOne(fetch = FetchType.LAZY) // 여러개의 post를 1명의 User가 작성, 지연 로딩 사용
     private User user;
 
-//    @Column
-//    private int like;
+    @Column
+    private int like;
 
     public void update(PostRequestDto postRequestDto) { // updqte 일반 생성자
         this.title = postRequestDto.getTitle();
@@ -44,12 +44,6 @@ public class Post extends Timestamped {
     public boolean validateUser(User user) {
         return !this.user.equals(user);
     }
-
-
-//    public void updatelike(int num) {
-//        this.like = (num);
-//    }
-
 
 
 }

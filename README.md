@@ -41,7 +41,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :movie_camera: 시연 영상
 -------------  
-[![Daily_Life](http://img.youtube.com/vi/u03fdC7WDBY/0.jpg)](https://www.youtu.be/u03fdC7WDBY)
+[![Daily_Life](http://img.youtube.com/vi/u03fdC7WDBY/0.jpg)](https://www.youtube.com/u03fdC7WDBY)
 
 :green_book: 와이어프레임
 ------------- 

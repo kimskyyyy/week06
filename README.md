@@ -33,7 +33,8 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :movie_camera: 시연 영상
 -------------  
-<iframe width="951" height="535" src="https://www.youtube.com/embed/u03fdC7WDBY" title="Daily_Life" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+<iframe width="951" height="535" src="https://www.youtube.com/embed/u03fdC7WDBY" title="Daily_Life" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+[![Video Label](Http://img.youtube.com.vi/u03fdC7WDBY.0.jpg)](https://www.youtube.com/embed/u03fdC7WDBY)
 
 :green_book: 와이어프레임
 ------------- 

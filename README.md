@@ -33,6 +33,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :movie_camera: 시연 영상
 -------------  
+<iframe width="951" height="535" src="https://www.youtube.com/embed/u03fdC7WDBY" title="Daily_Life" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
 
 :green_book: 와이어프레임
 ------------- 
@@ -75,4 +76,19 @@ Backend
 <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"> 
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"> 
 <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"> 
-<img src="https://img.shields.io/badge/Sourcetree-0052CC?style=for-the-badge&logo=Sourcetree&logoColor=white"> 
+<img src="https://img.shields.io/badge/Sourcetree-0052CC?style=for-the-badge&logo=Sourcetree&logoColor=white">    
+
+:rage: Trouble Shooting
+------------- 
+1) 프론트-백엔드 연결 후 회원가입 안됨 -> 사전 협의된 API가 Backend에서 수정이 있었는데 반영을 안해서 발생했고 API의 중요성을 알게됨
+
+2) local에서 테스트용으로 사용하던 h2-DB Console이, server 테스트에서는 console이 안뜨고 에러 페이지 -> 배포 환경에서 사용하려면 properties에 h2웹 허용 설정 추가
+
+3) 헤더에 토큰이 안보여지는 문제 -> WebConfig에 exposeHeaders 설정 추가
+
+4) backend에서는 정상 작동 하지만 프론트에서 게시글 수정, 삭제 시 CORS 관련 403 에러 -> WebConfig에 설정이 잘되어있었는데 에러가 발생했고 webSecurityConfig 쪽도 수정이 필요하다는 것을 알게됨 PreFlight가 토큰(권한) 없이 이용 가능하게끔 설정 함
+
+5) 헤더에 토큰이 요청되지 않는 사항 발생 -> Service에 Refresh-Token을 헤더에 보내는 과정에서 Refresh-Token에 대한 명칭 통일(refreshtoken)
+
+6) 이미지 업로드와 게시글 추가를 별도의 API로 사용하다보니, 이미지를 우선적으로 업로드하여 url을 받아오고, 그 url을 다시 보내야 하는 번거로움이 있었음 -> 이미지 업로드에 성공했지만, 이미지 업로드와 게시글 업로드가 동시에 될 수 있는 코드 작성의 필요성을 느낌
+ 

@@ -49,7 +49,7 @@ public class ImageService {
 
     @Transactional
     public User validateUser(HttpServletRequest request) {
-        if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
+        if (!tokenProvider.validateToken(request.getHeader("refreshtoken"))) {
             return null;
         }
         return tokenProvider.getUserFromAuthentication();

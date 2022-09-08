@@ -36,13 +36,13 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :green_book: 와이어프레임
 ------------- 
-<img src="https://user-images.githubusercontent.com/110077343/189073471-7104c34d-589e-43f6-8dc9-1fdf46f7cfcd.png" width="1000px" height="287px" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
-<img src="https://user-images.githubusercontent.com/110077343/189073629-1c8a50ef-ec60-419d-b9fd-4dd3015937a8.png" width="1000px" height="416px" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
+<img src="https://user-images.githubusercontent.com/110077343/189107732-e7c70398-c4d2-4e80-8ea0-9f261afbad0f.png" width="700px" height="288px" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
+<img src="https://user-images.githubusercontent.com/110077343/189108012-b0f5330f-2f1b-4c2b-8cd8-a4b25f9602dd.png" width="700px" height="417px" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
 
 
 :blue_book: ERD
 -------------
-<img src="https://user-images.githubusercontent.com/110077343/189080595-4f655837-5f4c-45c3-9246-9b32bd0e67c4.png" width="1000px" height="404x" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
+<img src="https://user-images.githubusercontent.com/110077343/189080595-4f655837-5f4c-45c3-9246-9b32bd0e67c4.png" width="700px" height="404x" title="px(픽셀) 크기 설정" alt="WireFrame"></img><br/>
 
 
 :orange_book: API

@@ -40,8 +40,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :movie_camera: 시연 영상
 -------------  
-<iframe width="951" height="535" src="https://www.youtube.com/embed/u03fdC7WDBY" title="Daily_Life" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-[![Video Label](Http://img.youtube.com.vi/u03fdC7WDBY.0.jpg)](https://www.youtube.com/embed/u03fdC7WDBY)
+[![Daily_Life](Http://img.youtube.com.vi/u03fdC7WDBY.0.jpg)](https://www.youtube.com/embed/u03fdC7WDBY)
 
 :green_book: 와이어프레임
 ------------- 
@@ -98,5 +97,5 @@ Backend
 
 5) 헤더에 토큰이 요청되지 않는 사항 발생 -> Service에 Refresh-Token을 헤더에 보내는 과정에서 Refresh-Token에 대한 명칭 통일(refreshtoken)
 
-6) 이미지 업로드와 게시글 추가를 별도의 API로 사용하다보니, 이미지를 우선적으로 업로드하여 url을 받아오고, 그 url을 다시 보내야 하는 번거로움이 있었음 -> 이미지 업로드에 성공했지만, 이미지 업로드와 게시글 업로드가 동시에 될 수 있는 코드 작성의 필요성을 느낌
+6) 이미지 업로드와 게시글 추가를 별도의 API로 사용하다보니, 이미지를 우선적으로 업로드하여 url을 받아오고, 그 url을 다시 보내야 하는 번거로움이 있음 -> 이미지 업로드에 성공했지만, 이미지 업로드와 게시글 업로드가 동시에 될 수 있는 코드 작성의 필요성을 느낌
  

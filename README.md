@@ -5,7 +5,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :v: 프로젝트 소개
 -------------   
-<img src="/path/to/img.jpg" width="1000px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+<img src="https://user-images.githubusercontent.com/110077343/189123103-ea8e89b2-62e5-4be8-8f3a-f97e859a69e3.png"></img><br/>
 소소한 일상의 지금을 공유해 보세요!   
 사진 찍을 때 V하는 것처럼, 자신의 지금 이 순간을 공유하고 자유롭게 소통하는 일상 공유 플랫폼       
 

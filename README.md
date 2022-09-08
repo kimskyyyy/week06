@@ -24,12 +24,19 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 :computer: 프로젝트 주요 기능
 -------------  
 1) 메인페이지: 카드형으로 전체 게시글 조회   
+<img src="https://user-images.githubusercontent.com/110077343/189138295-4cb8995b-fc9b-48b9-b790-2426ce1b59b6.png"></img><br/>       
 2) 회원가입: id 중복 확인, password 일치 확인, 유효성 검사(id: 숫자0-9, 영문자 대소문자 포함 4-12자, pw: 숫자0-9, 영문자 대소문자 포함 4-32자)   
-3) 로그인 페이지: id, password로 로그인, 로그인 성공시 HTTP Headers Response를 통해 Authorization Token, Refresh Token 발급    
+<img src="https://user-images.githubusercontent.com/110077343/189138219-63eeeb33-4cc2-405e-a0b6-f82f4d1041ec.png"></img><br/>     
+3) 로그인 페이지: id, password로 로그인, 로그인 성공시 HTTP Headers Response를 통해 Authorization Token, Refresh Token 발급   
+ <img src="https://user-images.githubusercontent.com/110077343/189137589-2d3356d8-3e80-418e-8aec-c8677a10df34.png"></img><br/>
 4) 게시글 작성 페이지: 게시글 작성 및 이미지 업로드   
-5) 게시글 조회 및 댓글 페이지: 게시글 조회 및 댓글 생성, 조회, 수정, 삭제   
-6) 게시글 수정 페이지: 게시글 수정   
+<img src="https://user-images.githubusercontent.com/110077343/189138503-d3108cde-b75c-4d42-896d-35fcdfc2aa74.png"></img><br/>     
+5) 게시글 조회 및 댓글 페이지: 게시글 조회 및 댓글 생성, 조회, 수정, 삭제    
+<img src="https://user-images.githubusercontent.com/110077343/189138612-ee6423c4-8d86-4b9a-b20e-4b51f5bd734e.png"></img><br/>       
+6) 게시글 수정 페이지: 게시글 수정    
+<img src="https://user-images.githubusercontent.com/110077343/189138869-00e25720-9987-4164-bd43-2ee2842d93cb.png"></img><br/>     
 7) 마이페이지: 내가 쓴 글 조회, 수정, 삭제   
+<img src="https://user-images.githubusercontent.com/110077343/189138735-332f907c-5009-4ac3-83cb-12424051c345.png"></img><br/>     
 
 :movie_camera: 시연 영상
 -------------  

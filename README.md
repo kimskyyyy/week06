@@ -23,7 +23,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :computer: 프로젝트 주요 기능
 -------------  
-1) 메인페이지: 카드형으로(?) 전체 게시글 조회   
+1) 메인페이지: 카드형으로 전체 게시글 조회   
 2) 회원가입: id 중복 확인, password 일치 확인, 유효성 검사(id: 숫자0-9, 영문자 대소문자 포함 4-12자, pw: 숫자0-9, 영문자 대소문자 포함 4-32자)   
 3) 로그인 페이지: id, password로 로그인, 로그인 성공시 HTTP Headers Response를 통해 Authorization Token, Refresh Token 발급    
 4) 게시글 작성 페이지: 게시글 작성 및 이미지 업로드   
@@ -59,7 +59,7 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=Ubuntu&logoColor=white">
 
 Frontend    
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">CSS
+<img src="https://img.shields.io/badge/CSS Modules-000000?style=for-the-badge&logo=CSS Modules&logoColor=white">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">

@@ -15,11 +15,11 @@ Backend GitHub: https://github.com/kimskyyyy/week06
 
 :family: 팀 멤버 소개 & 담당 기능 구현
 -------------   
-|이름|포지션|담당 기능 구현|깃허브|
-|------|---|---|---|
-|김소연|Frontend|모든 기능 구현(메인페이지, 회원가입, 로그인, 게시글CRUD, 댓글CRUD, 마이페이지 조회 등)|---|
-|김규수|Backend|회원가입, 로그인(Spring security, JWT), 댓글CRUD, ERD 관리|---|
-|김하늘|Backend|이미지 업로드(s3), 게시글CRUD, 서버 배포, front-back 연동, GitHub 관리|---|
+|이름|포지션|담당 기능 구현|
+|------|---|---|
+|김소연|Frontend|모든 기능 구현(메인페이지, 회원가입, 로그인, 게시글CRUD, 댓글CRUD, 마이페이지 조회 등)|
+|김규수|Backend|회원가입, 로그인(Spring security, JWT), 댓글CRUD, ERD 관리|
+|김하늘|Backend|이미지 업로드(s3), 게시글CRUD, 서버 배포, front-back 연동, GitHub 관리|
 
 :computer: 프로젝트 주요 기능
 -------------  
